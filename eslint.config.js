@@ -28,11 +28,6 @@ export default defineConfig([
 
     rules: {
       // ============================
-      // PRETTIER
-      // ============================
-      "prettier/prettier": "error",
-
-      // ============================
       // BUENAS PRÁCTICAS
       // ============================
       eqeqeq: ["error", "always"], // Siempre === y !==
