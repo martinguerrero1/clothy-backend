@@ -19,13 +19,6 @@ const categorySchema = new Schema(
       lowercase: true,
     },
 
-    description: {
-      type: String,
-      trim: true,
-      maxlength: 500,
-      default: "",
-    },
-
     image: {
       url: {
         type: String,
@@ -38,12 +31,6 @@ const categorySchema = new Schema(
         trim: true,
         default: "",
       },
-    },
-
-    parent: {
-      type: Schema.Types.ObjectId,
-      ref: "Category",
-      default: null,
     },
 
     active: {

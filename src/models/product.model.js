@@ -66,6 +66,14 @@ const productSchema = new Schema(
       required: true,
     },
 
+    gender: {
+      type: String,
+      enum: ["hombre", "mujer", "unisex"],
+      required: true,
+      trim: true,
+      lowercase: true,
+    },
+
     active: {
       type: Boolean,
       default: true,

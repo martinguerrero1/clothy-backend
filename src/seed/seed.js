@@ -23,7 +23,7 @@ async function seed() {
       return { ...product, category: categoriesId[product.category] };
     });
 
-    const createdProducts = await ProductModel.insertMany(newProducts);
+    await ProductModel.insertMany(newProducts);
 
     await mongoose.disconnect();
     console.log("✅ Seed ejecutada correctamente");
