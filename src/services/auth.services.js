@@ -71,3 +71,16 @@ export async function loginUser({ email, password }) {
     token,
   };
 }
+
+export async function getUser(userId) {
+  const user = await UserModel.findById(userId).select("id name lastName username email role");
+  console.log(user);
+  if (!user) {
+    const error = new Error("Usuario no encontrado");
+    error.statusCode = 404;
+
+    throw error;
+  }
+
+  return user;
+}

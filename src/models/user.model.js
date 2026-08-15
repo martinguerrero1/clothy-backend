@@ -43,12 +43,22 @@ const userSchema = new Schema(
 
     role: {
       type: String,
-      enum: ["cliente", "vendedor", "admin"],
+      enum: ["cliente", "admin"],
       default: "cliente",
     },
   },
   {
     timestamps: true,
+    versionKey: false,
+    toJSON: {
+      transform: (_document, returnedObject) => {
+        returnedObject.id = returnedObject._id.toString();
+
+        delete returnedObject._id;
+        delete returnedObject.__v;
+        delete returnedObject.password;
+      },
+    },
   }
 );
 
