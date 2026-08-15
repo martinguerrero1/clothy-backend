@@ -3,7 +3,6 @@ import { getProducts, getCategories } from "../services/product.services.js";
 async function getProductsController(req, res) {
   try {
     const { products, totalResults, page, limit } = await getProducts(req.query);
-
     res.status(200).json({
       message: "Productos obtenidos correctamente",
       products,

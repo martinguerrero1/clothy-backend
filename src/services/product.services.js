@@ -58,7 +58,6 @@ export async function getProducts(queryParams) {
       query = query.sort({ unitsSold: -1 });
       break;
     case "newest":
-      console.log("newest lleg");
       query = query.sort({ createdAt: -1 });
       break;
   }
@@ -70,8 +69,8 @@ export async function getProducts(queryParams) {
     Number.isInteger(requestedLimit) && requestedLimit > 0 ? Math.min(requestedLimit, 12) : 12;
 
   //PAGINATION------------
-  const skip = (page - 1) * limit;
-  query = query.skip(skip);
+  const skip = (page - 1) * allowedLimit;
+  query = query.skip(skip).limit(allowedLimit);
 
   return await {
     products: await query,
