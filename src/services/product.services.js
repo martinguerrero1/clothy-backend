@@ -2,7 +2,7 @@ import ProductModel from "../models/product.model.js";
 import CategoryModel from "../models/category.model.js";
 
 export async function getProducts(queryParams) {
-  const { search, category, gender, minPrice, maxPrice, sort, limit } = queryParams;
+  const { search, category, gender, minPrice, maxPrice, sort, limit, page = 1 } = queryParams;
 
   const filters = {
     active: true,
@@ -48,20 +48,37 @@ export async function getProducts(queryParams) {
     filters.price.$lte = Number(maxPrice);
   }
 
+  const totalResults = await ProductModel.countDocuments(filters).populate("category", "name slug");
   //QUERY CREATION
   let query = ProductModel.find(filters).populate("category", "name slug");
 
   //SORT--------------
-  if (sort === "best-sellers") {
-    query = query.sort({ unitsSold: -1 });
+  switch (sort) {
+    case "best-sellers":
+      query = query.sort({ unitsSold: -1 });
+      break;
+    case "newest":
+      console.log("newest lleg");
+      query = query.sort({ createdAt: -1 });
+      break;
   }
 
   //LIMIT----------------
-  if (limit) {
-    query = query.limit(Number(limit));
-  }
+  const requestedLimit = Number(limit);
 
-  return await query;
+  const allowedLimit =
+    Number.isInteger(requestedLimit) && requestedLimit > 0 ? Math.min(requestedLimit, 12) : 12;
+
+  //PAGINATION------------
+  const skip = (page - 1) * limit;
+  query = query.skip(skip);
+
+  return await {
+    products: await query,
+    totalResults,
+    page,
+    limit: allowedLimit,
+  };
 }
 
 export async function getCategories(queryParams) {

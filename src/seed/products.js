@@ -6,7 +6,12 @@ const products = [
     stock: 25,
     category: "remera",
     gender: "hombre",
-    images: [],
+    images: [
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317200/remera-blanca.jpg",
+        publicId: "remera-blanca",
+      },
+    ],
     unitsSold: 185,
   },
 
@@ -17,7 +22,12 @@ const products = [
     stock: 18,
     category: "remera",
     gender: "hombre",
-    images: [],
+    images: [
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317209/remera_negra.jpg",
+        publicId: "remera-negra",
+      },
+    ],
     unitsSold: 243,
   },
 
@@ -28,7 +38,12 @@ const products = [
     stock: 20,
     category: "pantalon",
     gender: "hombre",
-    images: [],
+    images: [
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317206/jeans.jpg",
+        publicId: "jeans",
+      },
+    ],
     unitsSold: 94,
   },
 
@@ -39,7 +54,12 @@ const products = [
     stock: 14,
     category: "abrigo",
     gender: "mujer",
-    images: [],
+    images: [
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317200/hoodie-beige.jpg",
+        publicId: "hoodie-beige",
+      },
+    ],
     unitsSold: 121,
   },
 
@@ -50,7 +70,12 @@ const products = [
     stock: 11,
     category: "abrigo",
     gender: "unisex",
-    images: [],
+    images: [
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317203/buzo-gris.jpg",
+        publicId: "buzo-gris",
+      },
+    ],
     unitsSold: 87,
   },
 
@@ -61,7 +86,12 @@ const products = [
     stock: 10,
     category: "abrigo",
     gender: "mujer",
-    images: [],
+    images: [
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317206/campera-celeste.jpg",
+        publicId: "campera-celeste",
+      },
+    ],
     unitsSold: 72,
   },
 
@@ -72,7 +102,12 @@ const products = [
     stock: 15,
     category: "calzado",
     gender: "unisex",
-    images: [],
+    images: [
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317207/zapatillas-blancas.jpg",
+        publicId: "zapatillas-blancas",
+      },
+    ],
     unitsSold: 98,
   },
 
@@ -83,7 +118,12 @@ const products = [
     stock: 9,
     category: "calzado",
     gender: "mujer",
-    images: [],
+    images: [
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317202/zapatos-negros.jpg",
+        publicId: "zapatos-negros",
+      },
+    ],
     unitsSold: 54,
   },
 
@@ -92,7 +132,12 @@ const products = [
     description: "Gorra de algodón con logo bordado.",
     price: 19999,
     stock: 30,
-    images: [],
+    images: [
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317213/gorra-negra.jpg",
+        publicId: "gorra-negra",
+      },
+    ],
     category: "accesorios",
     gender: "unisex",
     unitsSold: 156,
@@ -105,7 +150,12 @@ const products = [
     stock: 40,
     category: "accesorios",
     gender: "unisex",
-    images: [],
+    images: [
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317205/pack-medias.jpg",
+        publicId: "pack-medias",
+      },
+    ],
     unitsSold: 214,
   },
 ];
