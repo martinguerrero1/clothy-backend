@@ -8,7 +8,7 @@ const products = [
     gender: "hombre",
     images: [
       {
-        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317200/remera-blanca.jpg",
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317200/remera-blanca.jpg",
         publicId: "remera-blanca",
       },
     ],
@@ -24,7 +24,15 @@ const products = [
     gender: "hombre",
     images: [
       {
-        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317209/remera_negra.jpg",
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317209/remera_negra.jpg",
+        publicId: "remera-negra",
+      },
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317209/remera_negra.jpg",
+        publicId: "remera-negra",
+      },
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317209/remera_negra.jpg",
         publicId: "remera-negra",
       },
     ],
@@ -40,7 +48,11 @@ const products = [
     gender: "hombre",
     images: [
       {
-        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317206/jeans.jpg",
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317206/jeans.jpg",
+        publicId: "jeans",
+      },
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317206/jeans.jpg",
         publicId: "jeans",
       },
     ],
@@ -56,8 +68,12 @@ const products = [
     gender: "mujer",
     images: [
       {
-        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317200/hoodie-beige.jpg",
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317200/hoodie-beige.jpg",
         publicId: "hoodie-beige",
+      },
+      {
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317209/remera_negra.jpg",
+        publicId: "remera-negra",
       },
     ],
     unitsSold: 121,
@@ -72,7 +88,7 @@ const products = [
     gender: "unisex",
     images: [
       {
-        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317203/buzo-gris.jpg",
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317203/buzo-gris.jpg",
         publicId: "buzo-gris",
       },
     ],
@@ -88,7 +104,7 @@ const products = [
     gender: "mujer",
     images: [
       {
-        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317206/campera-celeste.jpg",
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317206/campera-celeste.jpg",
         publicId: "campera-celeste",
       },
     ],
@@ -104,7 +120,7 @@ const products = [
     gender: "unisex",
     images: [
       {
-        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317207/zapatillas-blancas.jpg",
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317207/zapatillas-blancas.jpg",
         publicId: "zapatillas-blancas",
       },
     ],
@@ -120,7 +136,7 @@ const products = [
     gender: "mujer",
     images: [
       {
-        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317202/zapatos-negros.jpg",
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317202/zapatos-negros.jpg",
         publicId: "zapatos-negros",
       },
     ],
@@ -134,7 +150,7 @@ const products = [
     stock: 30,
     images: [
       {
-        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317213/gorra-negra.jpg",
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317213/gorra-negra.jpg",
         publicId: "gorra-negra",
       },
     ],
@@ -152,7 +168,7 @@ const products = [
     gender: "unisex",
     images: [
       {
-        url: "https://res.cloudinary.com/lr2opxzi/image/upload/v1786317205/pack-medias.jpg",
+        url: "https://res.cloudinary.com/lr2opxzi/image/upload/f_auto,q_auto,w_600/v1786317205/pack-medias.jpg",
         publicId: "pack-medias",
       },
     ],

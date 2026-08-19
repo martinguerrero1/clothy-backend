@@ -2,6 +2,7 @@ import UserModel from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import CartModel from "../models/cart.model.js";
 
 dotenv.config();
 
@@ -30,6 +31,11 @@ export async function registerUser({ name, lastName, username, email, password }
   });
 
   const { password: _password, ...userWithoutPassword } = newUser.toObject();
+
+  await CartModel.create({
+    user_id: newUser._id,
+    items: [],
+  });
 
   return userWithoutPassword;
 }

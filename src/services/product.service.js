@@ -104,3 +104,9 @@ export async function getCategories(queryParams) {
 
   return query;
 }
+
+export async function getOneProduct(id) {
+  const product = await ProductModel.findOne({ _id: id }).populate("category", "name slug");
+
+  return product;
+}

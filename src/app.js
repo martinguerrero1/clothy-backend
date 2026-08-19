@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import productsRoutes from "./routes/product.routes.js";
+import cartRoutes from "./routes/cart.routes.js";
 
 const app = express();
 
@@ -30,5 +31,6 @@ app.get("/health", (req, res) => {
 //Auth routes
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productsRoutes);
+app.use("/api/cart", cartRoutes);
 
 export default app;
