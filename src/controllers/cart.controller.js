@@ -1,6 +1,6 @@
 import { getCart, addItem, clearCart, removeItem, updateItem } from "../services/cart.service.js";
 
-export async function getCartController(req, res) {
+export async function getCartController(req, res, next) {
   try {
     const userId = req.user.id;
 
@@ -11,14 +11,11 @@ export async function getCartController(req, res) {
       cart,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Hubo un error",
-      error: error.message,
-    });
+    next(error);
   }
 }
 
-export async function addItemController(req, res) {
+export async function addItemController(req, res, next) {
   try {
     const userId = req.user.id;
 
@@ -31,14 +28,11 @@ export async function addItemController(req, res) {
       cart,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Hubo un error",
-      error: error.message,
-    });
+    next(error);
   }
 }
 
-export async function updateItemController(req, res) {
+export async function updateItemController(req, res, next) {
   try {
     const userId = req.user.id;
 
@@ -53,14 +47,11 @@ export async function updateItemController(req, res) {
       cart,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Hubo un error",
-      error: error.message,
-    });
+    next(error);
   }
 }
 
-export async function removeItemController(req, res) {
+export async function removeItemController(req, res, next) {
   try {
     const userId = req.user.id;
 
@@ -73,14 +64,11 @@ export async function removeItemController(req, res) {
       cart,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Hubo un error",
-      error: error.message,
-    });
+    next(error);
   }
 }
 
-export async function clearCartController(req, res) {
+export async function clearCartController(req, res, next) {
   try {
     const userId = req.user.id;
 
@@ -91,9 +79,6 @@ export async function clearCartController(req, res) {
       cart,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Hubo un error",
-      error: error.message,
-    });
+    next(error);
   }
 }
