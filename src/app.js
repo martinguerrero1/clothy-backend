@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import productsRoutes from "./routes/product.routes.js";
+import categoriesRoutes from "./routes/category.routes.js";
 import cartRoutes from "./routes/cart.routes.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
@@ -32,6 +33,7 @@ app.get("/health", (req, res) => {
 //Auth routes
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productsRoutes);
+app.use("/api/categories", categoriesRoutes);
 app.use("/api/cart", cartRoutes);
 
 //Error handler

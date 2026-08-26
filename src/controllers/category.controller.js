@@ -3,11 +3,12 @@ import {
   deleteCategory,
   getCategories,
   modifyCategory,
-} from "../services/category.service";
+} from "../services/category.service.js";
 
 async function getCategoriesController(req, res, next) {
   try {
     const categories = await getCategories(req.query);
+    console.log(req.query);
 
     res.status(200).json({
       message: "Categorías obtenidas correctamente",

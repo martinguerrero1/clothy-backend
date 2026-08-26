@@ -1,4 +1,4 @@
-import { getProducts, getCategories, getOneProduct } from "../services/product.service.js";
+import { getProducts, getOneProduct } from "../services/product.service.js";
 
 async function getProductsController(req, res) {
   try {
@@ -14,22 +14,6 @@ async function getProductsController(req, res) {
     console.log(error);
     res.status(500).json({
       message: "Error al obtener productos",
-      error,
-    });
-  }
-}
-
-async function getCategoriesController(req, res) {
-  try {
-    const categories = await getCategories(req.query);
-
-    res.status(200).json({
-      message: "Categorias obtenidas correctamente",
-      categories,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: "Error al obtener categorias",
       error,
     });
   }
@@ -53,4 +37,4 @@ async function getOneProductController(req, res) {
   }
 }
 
-export default { getProductsController, getCategoriesController, getOneProductController };
+export default { getProductsController, getOneProductController };

@@ -6,8 +6,6 @@ export function validate(schema, property) {
       return next(result.error);
     }
 
-    req[property] = result.data;
-
     next();
   };
 }

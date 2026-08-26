@@ -1,5 +1,5 @@
-import CategoryModel from "../models/category.model";
-import ProductModel from "../models/product.model";
+import CategoryModel from "../models/category.model.js";
+import ProductModel from "../models/product.model.js";
 
 export async function getCategories(queryParams) {
   const { search, limit } = queryParams;
