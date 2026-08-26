@@ -80,27 +80,8 @@ export async function getProducts(queryParams) {
   };
 }
 
-export async function getCategories(queryParams) {
-  const { search, name, limit } = queryParams;
+export async function getOneProduct(id) {
+  const product = await ProductModel.findOne({ _id: id }).populate("category", "name slug");
 
-  const filters = {
-    active: true,
-  };
-
-  if (search) {
-    filters.name = { $regex: search, $options: "i" };
-  }
-
-  if (name) {
-    const nameFound = await CategoryModel.findOne({ name });
-    filters.name = nameFound;
-  }
-
-  let query = CategoryModel.find(filters);
-
-  if (limit) {
-    query = query.limit(Number(limit));
-  }
-
-  return query;
+  return product;
 }

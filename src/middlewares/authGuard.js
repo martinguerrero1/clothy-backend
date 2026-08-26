@@ -37,7 +37,7 @@ export function authGuard(req, res, next) {
     }
 
     return res.status(500).json({
-      message: "Error interno del servidor",
+      message: "Algo fallo con el auth guard",
     });
   }
 }
