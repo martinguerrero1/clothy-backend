@@ -4,13 +4,13 @@ const productImageSchema = new Schema(
   {
     url: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
     },
 
     publicId: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
     },
   },
@@ -27,6 +27,14 @@ const productSchema = new Schema(
       trim: true,
       minlength: 3,
       maxlength: 50,
+    },
+
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      lowercase: true,
     },
 
     description: {
@@ -99,6 +107,12 @@ const productSchema = new Schema(
     },
   }
 );
+
+productSchema.pre("validate", function () {
+  if (this.name) {
+    this.slug = this.name.trim().toLowerCase().replace(/\s+/g, "-");
+  }
+});
 
 const ProductModel = model("Product", productSchema);
 

@@ -1,5 +1,6 @@
 import CategoryModel from "../models/category.model.js";
 import ProductModel from "../models/product.model.js";
+import { uploadImage, deleteImage } from "./cloudinary.service.js";
 
 export async function getCategories(queryParams) {
   const { search, limit } = queryParams;
@@ -21,7 +22,7 @@ export async function getCategories(queryParams) {
   return query;
 }
 
-export async function addCategory(categoryData) {
+export async function addCategory(categoryData, file) {
   const { name } = categoryData;
 
   const categoryExists = await CategoryModel.findOne({ name });
@@ -30,12 +31,29 @@ export async function addCategory(categoryData) {
     throw new Error("La categoría ya existe");
   }
 
-  return CategoryModel.create({
-    name,
-  });
+  let image;
+
+  if (file) {
+    const fileName = file.originalname.split(".")[0].trim().toLowerCase().replace(/\s+/g, "-");
+
+    image = await uploadImage(file.buffer, "clothy/categories", fileName);
+  }
+
+  try {
+    return await CategoryModel.create({
+      name,
+      image,
+    });
+  } catch (error) {
+    if (image?.publicId) {
+      await deleteImage(image.publicId);
+    }
+
+    throw error;
+  }
 }
 
-export async function modifyCategory(categoryId, categoryData) {
+export async function modifyCategory(categoryId, categoryData, file) {
   const { name, active } = categoryData;
 
   const category = await CategoryModel.findById(categoryId);
@@ -44,16 +62,14 @@ export async function modifyCategory(categoryId, categoryData) {
     throw new Error("La categoría no existe");
   }
 
-  //modificacion de name
+  // Modificación de name
   if (name && name !== category.name) {
-    //verifica que no sea el mismo name de la cat actual
     const categoryExists = await CategoryModel.findOne({
       name,
       _id: { $ne: categoryId },
     });
 
     if (categoryExists) {
-      //verifica que no exista otra cat con ese name
       throw new Error("Ya existe una categoría con ese nombre");
     }
 
@@ -64,7 +80,32 @@ export async function modifyCategory(categoryId, categoryData) {
     category.active = active;
   }
 
-  return category.save();
+  let newImage;
+  const oldImagePublicId = category.image?.publicId; //se clona la imagen que estaba para poder eliminarla despues
+
+  if (file) {
+    const fileName = file.originalname.split(".")[0].trim().toLowerCase().replace(/\s+/g, "-");
+
+    newImage = await uploadImage(file.buffer, "clothy/categories", fileName);
+
+    category.image = newImage;
+  }
+
+  try {
+    const updatedCategory = await category.save();
+
+    //si existen ambas elimina la vieja
+    if (newImage?.publicId && oldImagePublicId) {
+      await deleteImage(oldImagePublicId);
+    }
+    return updatedCategory;
+  } catch (error) {
+    if (newImage?.publicId) {
+      await deleteImage(newImage.publicId);
+    }
+
+    throw error;
+  }
 }
 
 export async function deleteCategory(categoryId) {
@@ -82,5 +123,11 @@ export async function deleteCategory(categoryId) {
     throw new Error("No se puede eliminar la categoría porque tiene productos asociados");
   }
 
-  return CategoryModel.findByIdAndDelete(categoryId);
+  const deletedCategory = await CategoryModel.findByIdAndDelete(categoryId);
+
+  if (deletedCategory?.image?.publicId) {
+    await deleteImage(deletedCategory.image.publicId);
+  }
+
+  return deletedCategory;
 }

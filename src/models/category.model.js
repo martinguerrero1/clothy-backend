@@ -53,12 +53,10 @@ const categorySchema = new Schema(
   }
 );
 
-categorySchema.pre("validate", function (next) {
+categorySchema.pre("validate", function () {
   if (this.name) {
     this.slug = this.name.trim().toLowerCase().replace(/\s+/g, "-");
   }
-
-  next();
 });
 
 const CategoryModel = model("Category", categorySchema);

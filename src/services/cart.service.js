@@ -2,10 +2,46 @@ import CartModel from "../models/cart.model.js";
 
 export async function getCart(userId) {
   const cart = await CartModel.findOne({ user: userId }).populate("items.product");
-  // console.log("cart",cart)
+
   if (!cart) {
     throw new Error("El carrito no existe");
   }
+
+  return cart;
+}
+
+export async function createCart(userId) {
+  const existingCart = await CartModel.findOne({ user: userId });
+
+  if (existingCart) {
+    const error = new Error("El usuario ya tiene un carrito creado");
+    error.statusCode = 409;
+
+    throw error;
+  }
+
+  const cart = await CartModel.create({
+    user: userId,
+    items: [],
+  });
+
+  return cart;
+}
+
+export async function clearCart(userId) {
+  const cart = await CartModel.findOne({ user: userId });
+
+  if (!cart) {
+    throw new Error("El carrito no existe");
+  }
+
+  if (cart.items.length === 0) {
+    throw new Error("El carrito ya está vacio");
+  }
+
+  cart.items = [];
+
+  await cart.save();
 
   return cart;
 }
@@ -73,24 +109,6 @@ export async function removeItem(userId, productId) {
   }
 
   cart.items.pull(existingItem);
-
-  await cart.save();
-
-  return cart;
-}
-
-export async function clearCart(userId) {
-  const cart = await CartModel.findOne({ user: userId });
-
-  if (!cart) {
-    throw new Error("El carrito no existe");
-  }
-
-  if (cart.items.length === 0) {
-    throw new Error("El carrito ya está vacio");
-  }
-
-  cart.items = [];
 
   await cart.save();
 
