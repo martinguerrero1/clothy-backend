@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import CartModel from "../models/cart.model.js";
+import { createCart } from "./cart.service.js";
 
 dotenv.config();
 
@@ -32,10 +33,7 @@ export async function registerUser({ name, lastName, username, email, password }
 
   const { password: _password, ...userWithoutPassword } = newUser.toObject();
 
-  await CartModel.create({
-    user_id: newUser._id,
-    items: [],
-  });
+  await createCart(newUser._id);
 
   return userWithoutPassword;
 }
@@ -80,7 +78,7 @@ export async function loginUser({ email, password }) {
 
 export async function getUser(userId) {
   const user = await UserModel.findById(userId).select("id name lastName username email role");
-  console.log(user);
+
   if (!user) {
     const error = new Error("Usuario no encontrado");
     error.statusCode = 404;

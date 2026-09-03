@@ -1,18 +1,21 @@
 import cloudinary from "../config/cloudinary.js";
 
-export const uploadImage = (buffer, folder) => {
+export const uploadImage = (buffer, folder, filename) => {
   return new Promise((resolve, reject) => {
-    const uploadStream = cloudinary.uploader.upload_stream({ folder }, (error, result) => {
-      if (error) {
-        reject(error);
-        return;
-      }
+    const uploadStream = cloudinary.uploader.upload_stream(
+      { folder, public_id: filename },
+      (error, result) => {
+        if (error) {
+          reject(error);
+          return;
+        }
 
-      resolve({
-        url: getOptimizedUrl(result.public_id),
-        publicId: result.public_id,
-      });
-    });
+        resolve({
+          url: getOptimizedUrl(result.public_id),
+          publicId: result.public_id,
+        });
+      }
+    );
 
     uploadStream.end(buffer);
   });

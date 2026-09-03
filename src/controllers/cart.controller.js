@@ -1,4 +1,11 @@
-import { getCart, addItem, clearCart, removeItem, updateItem } from "../services/cart.service.js";
+import {
+  getCart,
+  addItem,
+  clearCart,
+  removeItem,
+  updateItem,
+  createCart,
+} from "../services/cart.service.js";
 
 export async function getCartController(req, res, next) {
   try {
@@ -8,6 +15,20 @@ export async function getCartController(req, res, next) {
 
     res.status(200).json({
       message: "Carrito encontrado",
+      cart,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+export async function createCartController(req, res, next) {
+  try {
+    const userId = req.user.id;
+
+    const cart = await createCart(userId);
+
+    res.status(201).json({
+      message: "Carrito creado",
       cart,
     });
   } catch (error) {

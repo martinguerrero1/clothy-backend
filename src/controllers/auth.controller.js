@@ -1,6 +1,6 @@
 import { registerUser, loginUser, getUser } from "../services/auth.service.js";
 
-async function register(req, res) {
+async function register(req, res, next) {
   try {
     const user = await registerUser(req.body);
 
@@ -9,13 +9,11 @@ async function register(req, res) {
       user,
     });
   } catch (error) {
-    res.status(error.statusCode).json({
-      message: error.message,
-    });
+    next(error);
   }
 }
 
-async function login(req, res) {
+async function login(req, res, next) {
   try {
     const { user, token } = await loginUser(req.body);
 
@@ -25,13 +23,11 @@ async function login(req, res) {
       token,
     });
   } catch (error) {
-    res.status(error.statusCode).json({
-      message: error.message,
-    });
+    next(error);
   }
 }
 
-async function me(req, res) {
+async function me(req, res, next) {
   try {
     const user = await getUser(req.user.id);
 
@@ -40,9 +36,7 @@ async function me(req, res) {
       user,
     });
   } catch (error) {
-    res.status(error.statusCode).json({
-      message: error.message,
-    });
+    next(error);
   }
 }
 

@@ -1,8 +1,8 @@
-export const errorHandler = (error, req, res, next) => {
+export const errorHandler = (error, _req, res, _next) => {
   const statusCode = error.statusCode || 500;
-
+  console.log(error);
   res.status(statusCode).json({
-    success: false,
     message: error.message || "Error interno del servidor",
+    error,
   });
 };

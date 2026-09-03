@@ -8,7 +8,6 @@ import {
 async function getCategoriesController(req, res, next) {
   try {
     const categories = await getCategories(req.query);
-    console.log(req.query);
 
     res.status(200).json({
       message: "Categorías obtenidas correctamente",
@@ -21,7 +20,7 @@ async function getCategoriesController(req, res, next) {
 
 async function addCategoryController(req, res, next) {
   try {
-    const category = await addCategory(req.body);
+    const category = await addCategory(req.body, req.file);
 
     res.status(201).json({
       message: "Categoría creada correctamente",
@@ -34,7 +33,7 @@ async function addCategoryController(req, res, next) {
 
 async function modifyCategoryController(req, res, next) {
   try {
-    const category = await modifyCategory(req.params.id, req.body);
+    const category = await modifyCategory(req.params.id, req.body, req.file);
 
     res.status(200).json({
       message: "Categoría modificada correctamente",
