@@ -22,8 +22,8 @@ router.get("/", validate(getCategoriesSchema, "query"), getCategoriesController)
 
 router.post(
   "/",
-  // authGuard,
-  // roleGuard,
+  authGuard,
+  roleGuard,
   upload.single("image"),
   validate(createCategorySchema, "body"),
   addCategoryController
@@ -31,8 +31,8 @@ router.post(
 
 router.patch(
   "/:id",
-  // authGuard,
-  // roleGuard,
+  authGuard,
+  roleGuard,
   upload.single("image"),
   validate(categoryIdSchema, "params"),
   validate(modifyCategorySchema, "body"),
@@ -41,8 +41,8 @@ router.patch(
 
 router.delete(
   "/:id",
-  // authGuard,
-  // roleGuard,
+  authGuard,
+  roleGuard,
   validate(categoryIdSchema, "params"),
   deleteCategoryController
 );

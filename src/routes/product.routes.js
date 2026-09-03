@@ -26,8 +26,8 @@ router.get("/:id", validate(ProductIdSchema, "params"), getProductByIdController
 
 router.post(
   "/",
-  // authGuard,
-  // roleGuard,
+  authGuard,
+  roleGuard,
   upload.array("images", 5),
   validate(addProductSchema, "body"),
   addProductController
@@ -35,8 +35,8 @@ router.post(
 
 router.patch(
   "/:id",
-  // authGuard,
-  // roleGuard,
+  authGuard,
+  roleGuard,
   upload.array("images", 5),
   validate(ProductIdSchema, "params"),
   validate(modifyProductSchema, "body"),
@@ -45,8 +45,8 @@ router.patch(
 
 router.delete(
   "/:id",
-  // authGuard,
-  // roleGuard,
+  authGuard,
+  roleGuard,
   validate(ProductIdSchema, "params"),
   deactivateProductController
 );
